@@ -1,2 +1,3 @@
 .osib-django-env/
 .vscode
+__pycache__/
