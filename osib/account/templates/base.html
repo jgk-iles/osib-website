@@ -54,7 +54,30 @@
             {% endif %}
         </div>
     </nav>
-    
+
+    {% comment %} {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="alert {{ message.tags }}">
+                    {{ message|safe }}
+                    <a href="#" class="close">x</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %} {% endcomment %}
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="container-fluid p-0">
+                <div class="alert {{ message.tags }} alert-dismissible" role="alert" >
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                    {{ message }}
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
 
     <div class="container mt-3" id="content">
         {% block content %}
