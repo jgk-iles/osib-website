@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}OSIB Blog{% endblock title %}
+
+{% block content %}
+    <h1>Blog</h1>
+    {% for post in page_obj %}
+        <div class="card my-3">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                </h5>
+                <h6 class="card-subtitle mb-2 text-muted">
+                    Published {{ post.publish }} by {{ post.author }}
+                </h6>
+                <p class="card-text">
+                    {{ post.body|truncatewords:20|linebreaks }}
+                </p>
+            </div>
+        </div>
+    {% endfor %}
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    {% if page_obj.has_previous %}
+      <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+    {% endif %}
+    {% for page in page_obj.paginator.page_range %}
+      <li class="page-item {% if page == page_obj.number %}active{% endif %}">
+        <a class="page-link" href="?page={{ page }}">{{ page }}</a>
+      </li>
+    {% endfor %}
+    {% if page_obj.has_next %}
+      <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+    {% endif %}
+  </ul>
+</nav>
+
+{% endblock content %}
