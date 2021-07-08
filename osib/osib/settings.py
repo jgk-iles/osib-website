@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'images.apps.ImagesConfig',
     'blog.apps.BlogConfig',
+    'ckeditor',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

@@ -4,8 +4,22 @@
 
 {% block content %}
     <h1>{{ post.title }}</h1>
-        <p class="date">
-            Published {{ post.publish }} by {{ post.author }}   
-        </p>
+    <p class="date">
+        Published {{ post.publish }} by {{ post.author }}   
+    </p>
+    
+    {% comment %} <div class="jumbotron">
+        <img src="{{ post.image.url }}" class="img-fluid" alt="{{ post.image.name }}}">
+        <footer>{{ post.image_caption }}</footer>
+    </div> {% endcomment %}
+
+    {% if post.image %}
+        <figure class="figure">
+            <img src="{{ post.image.url }}" class="figure-img img-fluid rounded" alt="{{ post.image.name }}">
+            <figcaption class="figure-caption text-center">{{ post.image_caption }}</figcaption>
+        </figure>
+    {% endif %}
+    
+    
     {{ post.body|linebreaks }}
 {% endblock %}
