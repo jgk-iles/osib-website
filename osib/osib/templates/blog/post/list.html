@@ -4,6 +4,11 @@
 
 {% block content %}
     <h1>Blog</h1>
+
+    {% if perms.blog.can_publish_articles %}
+      <a class="btn btn-primary" href="{% url 'blog:create_post' %}" role="button">Create Post</a>
+    {% endif %}
+
     {% for post in page_obj %}
         <div class="card my-3">
             <div class="card-body">
@@ -14,7 +19,7 @@
                     Published {{ post.publish }} by {{ post.author }}
                 </h6>
                 <p class="card-text">
-                    {{ post.body|truncatewords:20|linebreaks }}
+                    {{ post.body|safe|truncatewords:20|linebreaks }}
                 </p>
             </div>
         </div>

@@ -7,11 +7,6 @@
     <p class="date">
         Published {{ post.publish }} by {{ post.author }}   
     </p>
-    
-    {% comment %} <div class="jumbotron">
-        <img src="{{ post.image.url }}" class="img-fluid" alt="{{ post.image.name }}}">
-        <footer>{{ post.image_caption }}</footer>
-    </div> {% endcomment %}
 
     {% if post.image %}
         <figure class="figure">
@@ -20,6 +15,5 @@
         </figure>
     {% endif %}
     
-    
-    {{ post.body|linebreaks }}
+    {{ post.body|safe|linebreaks }}
 {% endblock %}
