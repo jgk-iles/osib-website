@@ -31,7 +31,7 @@ class Post(models.Model):
                               choices=STATUS_CHOICES,
                               default='draft')
     image = models.ImageField(upload_to='posts/%Y/%m/%d/', blank=True)
-    image_caption = models.CharField(max_length=250, blank=True)
+    image_caption = models.CharField(max_length=300, blank=True)
 
     objects = models.Manager()
     published = PublishedManager()
