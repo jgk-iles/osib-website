@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'images.apps.ImagesConfig',
     'blog.apps.BlogConfig',
     'ckeditor',
+    'feeds'
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -171,3 +172,7 @@ CKEDITOR_CONFIGS = {
         'width': 'auto'
     },
 }
+
+# Feeds preferences
+FEEDS_USER_AGENT = 'OsibWebsite'
+FEEDS_SERVER = 'http://osibpodcast.com'

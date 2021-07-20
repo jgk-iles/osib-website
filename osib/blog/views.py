@@ -4,6 +4,7 @@ from django.utils.text import slugify
 from django.contrib.auth.decorators import permission_required
 from .models import Post
 from .forms import CreatePostForm
+from feeds.models import Source
 
 
 def post_list(request):
@@ -17,10 +18,10 @@ def post_list(request):
 
 def post_detail(request, year, month, day, post):
     post = get_object_or_404(Post, slug=post,
-                                   status='published',
-                                   publish__year=year,
-                                   publish__month=month,
-                                   publish__day=day)
+                             status='published',
+                             publish__year=year,
+                             publish__month=month,
+                             publish__day=day)
     return render(request, 'blog/post/detail.html', {'post': post})
 
 
@@ -36,5 +37,11 @@ def create_post(request):
             return redirect(new_post)
     else:
         form = CreatePostForm()
-    
+
     return render(request, 'blog/post/create.html', {'form': form})
+
+
+def episode_list(request):
+    feed = Source.objects.get(name='One Stream in Bristol')
+    episodes = feed.posts.all()
+    return render(request, 'blog/podcast/list.html', {'episodes': episodes})

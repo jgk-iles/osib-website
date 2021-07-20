@@ -1,8 +1,5 @@
-{% extends 'base.html' %}
-
-{% load crispy_forms_tags %}
-
-{% block title %}Create a new post{% endblock %}
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% block title %}Create a
+new post{% endblock %}
 
 <style>
   /* main.css */
@@ -12,29 +9,14 @@
 </style>
 
 {% block content %}
-    <form action="{% url 'blog:create_post' %}" method="post">
-        {% csrf_token %}
-        {{ form.media }}
-        {{ form|crispy }}
-        <input type="submit" value="Submit">
-    </form>
+<form action="{% url 'blog:create_post' %}" method="post">
+  {% csrf_token %} {{ form.media }} {{ form|crispy }}
+  <input type="submit" value="Submit" />
+</form>
 {% endblock content %}
 
-{% comment %} 
-{% block content %}
-    <div class="mx-3 mx-md-5">
-    <h1>Create an account</h1>
-    <p>Please, sign up using the following form:</p>
-    <form method="post">
-        {{ user_form|crispy }}
-        {% csrf_token %}
-        <input type="submit" value="Create my account">
-    </form>
-    </div>
-{% endblock %} {% endcomment %}
-
 <script>
-     $(document).ready(function () {
-    $(".django-ckeditor-widget").css("width", "100%")
- });
+  $(document).ready(function () {
+    $('.django-ckeditor-widget').css('width', '100%');
+  });
 </script>

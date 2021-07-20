@@ -4,24 +4,25 @@
 <h1>Blog</h1>
 
 {% if perms.blog.can_publish_articles %}
-<a class="btn btn-primary" href="{% url 'blog:create_post' %}" role="button"
-  >Create Post</a
->
-{% endif %} {% for post in page_obj %}
+<a class="btn btn-primary" href="{% url 'blog:create_post' %}" role="button">
+Create Post
+</a>
+{% endif %}
+
+{% for episode in episodes %}
 <div class="card my-3">
   <div class="card-body">
     <h5 class="card-title">
-      <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+      {{ episode.title }}
     </h5>
-    <h6 class="card-subtitle mb-2 text-muted">
-      Published {{ post.publish }} by {{ post.author }}
-    </h6>
-    <p class="card-text">{{ post.body|safe|truncatewords:20|linebreaks }}</p>
+    {% with episode.enclosures.all|first as audio %}
+      <p><a href="{{ audio.href }}">Listen Now</a></p>
+    {% endwith %}
   </div>
 </div>
 {% endfor %}
 
-<nav aria-label="Page navigation example">
+{% comment %} <nav aria-label="Page navigation example">
   <ul class="pagination">
     {% if page_obj.has_previous %}
     <li class="page-item">
@@ -39,6 +40,6 @@
     </li>
     {% endif %}
   </ul>
-</nav>
+</nav> {% endcomment %}
 
 {% endblock content %}

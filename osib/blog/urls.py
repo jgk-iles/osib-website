@@ -11,4 +11,5 @@ urlpatterns = [
          views.post_detail,
          name="post_detail"),
     path("create/", views.create_post, name="create_post"),
+    path("podcast/", views.episode_list, name="episode_list")
 ]

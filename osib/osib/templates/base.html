@@ -48,7 +48,7 @@
             {% comment %} {% endif %} {% endcomment %}
             {% if request.user.is_authenticated %}
                 <form class="form-inline">
-                    <span class="navbar-text mr-3">Hello {{ request.user.first_name }}</span>
+                    <span class="navbar-text mr-3">Logged in as {{ request.user.username }}</span>
                     <a class="btn btn-light" href="{% url 'logout' %}" role="button">Log-out</a>
                 </form>
             {% else %}
