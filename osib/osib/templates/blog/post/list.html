@@ -1,33 +1,31 @@
 {% extends 'base.html' %}
 {% block title %}OSIB Blog{% endblock title %}
 {% block content %}
-<h1>Blog</h1>
+<h1 class="display-3 text-light">Blog</h1>
 
 {% if perms.blog.can_publish_articles %}
-<a class="btn btn-primary" href="{% url 'blog:create_post' %}" role="button"
-  >Create Post</a
->
-{% endif %} {% for post in page_obj %}
-<div class="card my-3">
-  <div class="card-body">
-    <h5 class="card-title">
-      <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
-    </h5>
-    <h6 class="card-subtitle mb-2 text-muted">
-      Published {{ post.publish }} by {{ post.author }}
-    </h6>
-    <p class="card-text">{{ post.body|safe|truncatewords:20|linebreaks }}</p>
+<a class="btn btn-primary" href="{% url 'blog:create_post' %}" role="button">Create Post</a>
+{% endif %}
+
+{% for post in page_obj %}
+  <div class="card text-dark my-3">
+    <div class="card-body">
+      <h5 class="card-title">
+        <a href="{{ post.get_absolute_url }}" class="stretched-link">{{ post.title }}</a>
+      </h5>
+      <h6 class="card-subtitle mb-2 text-muted">
+        Published {{ post.publish }} by {{ post.author }}
+      </h6>
+      <p class="card-text text-dark">{{ post.body|safe|truncatewords:20|linebreaks }}</p>
+    </div>
   </div>
-</div>
 {% endfor %}
 
 <nav aria-label="Page navigation example">
   <ul class="pagination">
     {% if page_obj.has_previous %}
     <li class="page-item">
-      <a class="page-link" href="?page={{ page_obj.previous_page_number }}"
-        >Previous</a
-      >
+      <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
     </li>
     {% endif %} {% for page in page_obj.paginator.page_range %}
     <li class="page-item {% if page == page_obj.number %}active{% endif %}">

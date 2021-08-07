@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %}One Stream in Bristol{% endblock title %}
+{% block content %}
+
+<div class="jumbotron text-dark">
+    <h1 class="display-4">Welcome to One Stream in Bristol</h1>
+    <p class="lead">The most popular Bristol City podcast. Produced by fans, for the fans. </p>
+    <hr class="my-4">
+    <p class="lead">
+        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+    </p>
+</div>
+
+<h2 class="">Latest Episode</h2>
+
+<div class="card text-dark my-3">
+    <div class="card-body">
+        <div class="row align-items-center">
+            <div class="col">
+                <img src="{{ episode.image_url }}" class="img-thumbnail img-fluid">
+            </div>
+            <div class="col-10">
+                <h5 class="card-title display-4">
+                    {{ episode.title }}
+                </h5>
+                {% with episode.enclosures.all|first as audio %}
+                <h5 class="lead"><a href="{{ audio.href }}">Listen Now</a></h5>
+            </div>
+            {% endwith %}
+        </div>
+    </div>
+</div>
+
+<hr class="my-4">
+
+<h2 class="mb-4">Latest Blog Posts</h2>
+
+{% for post in posts %}
+<h3 class="lead">
+    <a href="{{ post.get_absolute_url }}" class="stretched-link">{{ post.title }}<a>
+</h3>
+<h6 class="mb-2">
+    Published {{ post.publish }} by {{ post.author }}
+</h6>
+<p>{{ post.body|safe|truncatewords:20|linebreaks }}</p>
+<hr class="my-2">
+{% endfor %}
+
+{% endblock content %}

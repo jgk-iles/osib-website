@@ -11,5 +11,7 @@ urlpatterns = [
          views.post_detail,
          name="post_detail"),
     path("create/", views.create_post, name="create_post"),
-    path("podcast/", views.episode_list, name="episode_list")
+    path("edit/<int:year>/<int:month>/<int:day>/<slug:post>/",
+         views.edit_post, name="edit_post"),
+    path("podcast/", views.episode_list, name="episode_list"),
 ]

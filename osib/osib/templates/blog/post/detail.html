@@ -3,17 +3,46 @@
 {% block title %}{{ post.title }}{% endblock %}
 
 {% block content %}
-    <h1>{{ post.title }}</h1>
-    <p class="date">
-        Published {{ post.publish }} by {{ post.author }}   
-    </p>
+<h1>{{ post.title }}</h1>
+<p class="date">
+    Published {{ post.publish }} by {{ post.author }} {% if post.author.id == user.id %} | <a
+       href="{% url 'blog:edit_post' post.publish.year post.publish.month post.publish.day post.slug %}">Edit</a>{% endif %}
+</p>
 
-    {% if post.image %}
-        <figure class="figure">
-            <img src="{{ post.image.url }}" class="figure-img img-fluid rounded" alt="{{ post.image.name }}">
-            <figcaption class="figure-caption text-center">{{ post.image_caption }}</figcaption>
-        </figure>
-    {% endif %}
-    
-    {{ post.body|safe|linebreaks }}
+{% if post.image %}
+<figure class="figure">
+    <img src="{{ post.image.url }}" class="figure-img img-fluid rounded" alt="{{ post.image.name }}">
+    <figcaption class="figure-caption text-center">{{ post.image_caption }}</figcaption>
+</figure>
+{% endif %}
+
+{{ post.body|safe|linebreaks }}
+
+{% comment %} <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos deleniti dolores velit
+    laudantium accusantium autem amet maiores vero vitae totam quaerat quos, alias, recusandae magni officia delectus
+    distinctio nemo a unde! Obcaecati soluta dolor in eos, aut vel impedit nobis ipsum vero hic cupiditate voluptatibus
+    quos corrupti, sit porro suscipit dolore commodi! Reiciendis eius illo itaque sunt earum odit velit? Possimus atque
+    voluptas optio, assumenda unde fugiat soluta magni, voluptatum ratione delectus deleniti ab quae maiores doloremque
+    rerum iste debitis cupiditate odit amet pariatur rem. Sunt ipsum nostrum aperiam rerum, iste at eum voluptas
+    officiis!</p>
+
+<p>Dicta ea perspiciatis a architecto. Culpa, officia. Minus unde, minima itaque atque dolore molestias ducimus?
+    Praesentium vitae consectetur vel dolorem, necessitatibus repellendus iste nobis quia excepturi eum doloribus enim
+    veritatis exercitationem veniam incidunt quidem voluptates corporis. Omnis debitis distinctio sunt ducimus sint
+    voluptatum ea aperiam temporibus provident magni nam perferendis amet aspernatur delectus odio enim, iure
+    exercitationem eveniet deserunt nulla eius! Maxime quaerat voluptates velit esse eveniet tenetur earum? Pariatur id,
+    veritatis dolore provident, maxime quis dolorum consequuntur quas autem sit, quos a voluptas. Cupiditate ea
+    laboriosam et beatae. Qui, placeat dolore. Optio accusamus dignissimos tenetur exercitationem quas eum, quasi neque
+    facere voluptatem corporis atque, eligendi sed architecto. Ab, incidunt nobis.</p>
+
+<p>Quidem placeat corporis illum eius, culpa maxime blanditiis nemo quos unde animi officiis praesentium illo suscipit
+    ad quisquam optio mollitia, iure sequi ut molestiae itaque. Deleniti consequatur numquam itaque officia aliquam,
+    enim culpa autem maiores, debitis molestias veniam dolorem, necessitatibus dolores ad nobis sunt ea dignissimos
+    ducimus. Vitae molestiae ex, numquam itaque ullam mollitia. Veritatis repellat velit minus? Totam vitae ad
+    temporibus laboriosam sunt nam facilis dicta eius nostrum dolorum iste minus aut, adipisci quos! Quis dolore vitae
+    impedit, ullam dicta excepturi nemo tempore dolor officiis eos ipsum repellendus beatae error autem quasi suscipit
+    aliquid veniam? Dicta, cumque impedit? Beatae quasi voluptas magni dolor cupiditate dicta cum sapiente animi commodi
+    quibusdam officia quaerat laborum, placeat, id modi perferendis veritatis facilis officiis illum harum quas autem!
+</p> {% endcomment %}
+
 {% endblock %}
