@@ -4,7 +4,7 @@
 
 <div class="jumbotron text-dark">
     <h1 class="display-4">Welcome to One Stream in Bristol</h1>
-    <p class="lead">The most popular Bristol City podcast. Produced by fans, for the fans. </p>
+    <p class="lead">The most popular Bristol City podcast. Produced by fans, for fans. </p>
     <hr class="my-4">
     <p class="lead">
         <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
@@ -16,13 +16,13 @@
 <div class="card text-dark my-3">
     <div class="card-body">
         <div class="row align-items-center">
-            <div class="col">
+            <div class="col-sm d-none d-md-block">
                 <img src="{{ episode.image_url }}" class="img-thumbnail img-fluid">
             </div>
-            <div class="col-10">
-                <h5 class="card-title display-4">
+            <div class="col-sm-10">
+                <h3 class="card-title">
                     {{ episode.title }}
-                </h5>
+                </h3>
                 {% with episode.enclosures.all|first as audio %}
                 <h5 class="lead"><a href="{{ audio.href }}">Listen Now</a></h5>
             </div>
