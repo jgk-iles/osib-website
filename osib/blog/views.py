@@ -1,3 +1,4 @@
+from django.core import paginator
 from django.http.response import HttpResponseForbidden
 from django.shortcuts import redirect, render, get_object_or_404
 from django.core.paginator import Paginator
@@ -82,4 +83,7 @@ def edit_post(request, year, month, day, post):
 def episode_list(request):
     feed = Source.objects.get(name='One Stream in Bristol')
     episodes = feed.posts.all().order_by('-created')
-    return render(request, 'blog/podcast/list.html', {'episodes': episodes})
+    paginator = Paginator(episodes, 5)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'blog/podcast/list.html', {'page_obj': page_obj})

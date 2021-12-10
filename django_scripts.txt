@@ -1,0 +1,35 @@
+SCRIPTS FOR DJANGO
+==================
+
+
+PYTHONPATH=/etc/opt/osib-website:/opt/osib-website \
+    python osib/manage.py migrate \
+    --settings=settings
+
+
+    /opt/osib-website/venv/bin/python \
+    /opt/osib-website/osib/manage.py collectstatic \
+    --settings=settings
+    
+    
+Compile all files as Root:
+    
+    
+/opt/osib-website/venv/bin/python -m compileall \
+    -x /opt/osib-website/venv/ /opt/osib-website    
+    
+    
+    
+PYTHONPATH=/etc/opt/osib-website:/opt/osib-website \
+DJANGO_SETTINGS_MODULE=settings \
+su osib-website -c \
+"/opt/osib-website/venv/bin/python \
+/opt/osib-website/osib/manage.py migrate"
+
+
+
+CREATE USER osib-website PASSWORD 'django-insecure-gi&zsabf5_cp&cqq1ht)z^ayf4^hi_maw#3)imr*w!e*b_ts=c';
+CREATE DATABASE osib-website OWNER osib-website;
+
+
+CREATE DATABASE osib OWNER osib;
